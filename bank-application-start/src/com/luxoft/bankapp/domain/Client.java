@@ -3,6 +3,7 @@ package com.luxoft.bankapp.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Client {
 	
@@ -38,7 +39,19 @@ public class Client {
 			return name;
 		}
 	}
-	
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (!(obj instanceof Client)) return false;
+		Client client = (Client) obj;
+		return (Objects.equals(this.getName(), client.getName()) && (this.getGender() == client.getGender()));
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.getName(), this.getGender());
+	}
 	@Override
 	public String toString() {
 		return getClientGreeting();

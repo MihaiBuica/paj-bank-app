@@ -15,6 +15,10 @@ import com.luxoft.bankapp.exceptions.NotEnoughFundsException;
 import com.luxoft.bankapp.exceptions.OverdraftLimitExceededException;
 import com.luxoft.bankapp.service.BankService;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 public class Test1 {
 
 	@Test
@@ -63,10 +67,19 @@ public class Test1 {
 		BankService.addClient(bank, client2);
 
 		assertEquals(2, bank.getClients().size());
-		assertEquals("Mr. Smith John", bank.getClients().get(0).getClientGreeting());
-		assertEquals("Mr. Smith John", bank.getClients().get(0).toString());
-		assertEquals("Ms. Smith Michelle", bank.getClients().get(1).getClientGreeting());
-		assertEquals("Ms. Smith Michelle", bank.getClients().get(1).toString());
+
+
+		Set<String> greetingsExpected = new HashSet<>();
+		greetingsExpected.add("Mr. Smith John");
+		greetingsExpected.add("Ms. Smith Michelle");
+		Set<String> greetingsResults = bank.getClients().stream().map(Client::getClientGreeting).collect(Collectors.toSet());
+		assertEquals(true, greetingsResults.equals(greetingsExpected));
+		Set<String> tostringExpected = new HashSet<>();
+		tostringExpected.add("Mr. Smith John");
+		tostringExpected.add("Ms. Smith Michelle");
+		Set<String> tostringResults = bank.getClients().stream().map(Client::toString).collect(Collectors.toSet());
+		assertEquals(true, tostringResults.equals(tostringExpected));
+
 	}
 
 }

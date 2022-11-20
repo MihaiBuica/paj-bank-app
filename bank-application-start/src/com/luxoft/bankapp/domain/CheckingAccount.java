@@ -31,4 +31,5 @@ public class CheckingAccount extends AbstractAccount {
 	public double maximumAmountToWithdraw(){
         return getBalance() + overdraft;
     }
+
 }

@@ -46,9 +46,24 @@ public class BankReport {
 
     public static Map<Client, Collection<Account>> getCustomerAccounts(Bank bank) {
         Map<Client, Collection<Account>> customerAccounts = new HashMap<>();
+        Set<Client> clients = bank.getClients();
         bank.getClients().forEach(client -> customerAccounts.put(client, client.getAccounts()));
         return customerAccounts;
     }
 
-    // TODO: getClientsByCity(...)
+    public static Map<String, List<Client>> getClientsByCity(Bank bank) {
+        // All keys in "natural" order
+        Map<String, List<Client>> clientsCity = new TreeMap<>();
+        bank.getClients().forEach(client -> {
+            if (clientsCity.containsKey(client.getCity())) {
+                clientsCity.get(client.getCity()).add(client);
+            }
+            else {
+                List<Client> newCityList = new ArrayList<>();
+                newCityList.add(client);
+                clientsCity.put(client.getCity(), newCityList);
+            }
+        });
+        return clientsCity;
+    }
 }

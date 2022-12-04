@@ -25,7 +25,7 @@ public class BankApplication {
 	}
 	
 	private static void modifyBank() {
-		Client client1 = new Client("John", Gender.MALE);
+		Client client1 = new Client("John", Gender.MALE, "Bucharest");
 		Account account1 = new SavingAccount(1, 100);
 		Account account2 = new CheckingAccount(2, 100, 20);
 		client1.addAccount(account1);
@@ -86,7 +86,7 @@ public class BankApplication {
 		System.out.println(" Number of accounts: " + BankReport.getNumberOfAccounts(bank));
 		System.out.println(" Total sum in accounts: " + BankReport.getTotalSumInAccounts(bank));
 		System.out.println(" Total sum of bank credits: " + BankReport.getBankCreditSum(bank));
-		System.out.println(" Clients by city: N/A");
+		System.out.println(" Clients by city: " + BankReport.getClientsByCity(bank));
 		System.out.println("==========================================================");
 	}
 

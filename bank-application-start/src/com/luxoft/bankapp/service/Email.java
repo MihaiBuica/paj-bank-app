@@ -14,7 +14,7 @@ public class Email {
         this.to = to;
         this.from = "paj@bankapp.com";
         this.subject = "BankApp: Welcome " + client.getClientGreeting() + "!";
-        this.body = "Welcome " + client.getClientGreeting() + ",\n";
+        this.body = "Welcome " + client.getClientGreeting();
     }
 
     @Override

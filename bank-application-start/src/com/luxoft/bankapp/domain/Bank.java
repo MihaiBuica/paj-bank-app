@@ -4,13 +4,16 @@ import java.text.DateFormat;
 import java.util.*;
 
 import com.luxoft.bankapp.exceptions.ClientExistsException;
+import com.luxoft.bankapp.service.Email;
+import com.luxoft.bankapp.service.EmailService;
 import com.luxoft.bankapp.utils.ClientRegistrationListener;
 
 public class Bank {
 	
 	private final Set<Client> clients = new HashSet<>();
 	private final List<ClientRegistrationListener> listeners = new ArrayList<ClientRegistrationListener>();
-	
+	private final EmailService emailService = new EmailService();
+
 	private int printedClients = 0;
 	private int emailedClients = 0;
 	private int debuggedClients = 0;
@@ -50,7 +53,11 @@ public class Bank {
 	public Set<Client> getClients() {
 		return Collections.unmodifiableSet(clients);
 	}
-	
+
+	public void stopEmailService() {
+		emailService.close();
+	}
+
 	class PrintClientListener implements ClientRegistrationListener {
 		@Override 
 		public void onClientAdded(Client client) {
@@ -65,7 +72,8 @@ public class Bank {
 		public void onClientAdded(Client client) {
 	        System.out.println("Notification email for client " + client.getName() + " to be sent");
 	        emailedClients++;
-	    }
+			emailService.sendNotificationEmail(new Email(client, client.getName() + "@mail.com"));
+		}
 	}
 	
 	class DebugListener implements ClientRegistrationListener {

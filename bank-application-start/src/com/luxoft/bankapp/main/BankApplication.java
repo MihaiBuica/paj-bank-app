@@ -15,6 +15,7 @@ public class BankApplication {
 	private static Bank bank;
 	
 	public static void main(String[] args) {
+		printThreadId();
 		bank = new Bank();
 		modifyBank();
 		printBalance();
@@ -22,8 +23,13 @@ public class BankApplication {
 		if(Arrays.asList(args).contains("-statistics")) {
 			displayStatistics();
 		}
+		bank.stopEmailService();
+
 	}
-	
+
+	private static void printThreadId(){
+		System.out.println("Main Thread ID: " + Thread.currentThread().getId());
+	}
 	private static void modifyBank() {
 		Client client1 = new Client("John", Gender.MALE, "Bucharest");
 		Account account1 = new SavingAccount(1, 100);

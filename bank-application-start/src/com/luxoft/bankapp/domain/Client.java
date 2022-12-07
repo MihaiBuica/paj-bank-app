@@ -2,7 +2,7 @@ package com.luxoft.bankapp.domain;
 
 import java.util.*;
 
-public class Client {
+public class Client implements Comparable{
 	
 	private String name;
 	private Gender gender;
@@ -54,7 +54,8 @@ public class Client {
 		if (this == obj) return true;
 		if (!(obj instanceof Client)) return false;
 		Client client = (Client) obj;
-		return (Objects.equals(this.getName(), client.getName()) && (this.getGender() == client.getGender()));
+		return (Objects.equals(this.getName(), client.getName()) && (this.getGender() == client.getGender()) &&
+				(this.getCity() == client.getCity()) );
 	}
 
 	@Override
@@ -66,4 +67,32 @@ public class Client {
 		return getClientGreeting();
 	}
 
+	@Override
+	public int compareTo(Object o) {
+		int ret = 0;
+
+		if (!(o instanceof Client)) {
+			ret = 1;
+		}
+
+		Client client2 = (Client) o;
+
+		if (this.equals(client2)) {
+			ret = 0;
+		}
+		else if (this.name.compareTo(client2.getName()) == 0) {
+			if (this.gender.compareTo(client2.getGender()) == 0) {
+				ret = this.city.compareTo(client2.getCity());
+			}
+			else {
+				ret = this.gender.compareTo(client2.getGender());
+			}
+		}
+		else
+		{
+			ret = this.name.compareTo(client2.getName());
+		}
+
+		return ret;
+	}
 }

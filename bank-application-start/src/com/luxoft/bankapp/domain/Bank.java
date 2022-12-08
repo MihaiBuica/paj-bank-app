@@ -51,6 +51,7 @@ public class Bank {
     }
 	
 	public Set<Client> getClients() {
+		// Requirement: the getClients() method must return unmodifiable client set for clients encapsulation.
 		return Collections.unmodifiableSet(clients);
 	}
 

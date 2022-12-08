@@ -60,7 +60,7 @@ public class Client implements Comparable{
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(this.getName(), this.getGender());
+		return Objects.hash(this.getName(), this.getGender(), this.getCity());
 	}
 	@Override
 	public String toString() {

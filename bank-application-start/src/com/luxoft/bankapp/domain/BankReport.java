@@ -36,7 +36,9 @@ public class BankReport {
     public static SortedSet getAccountsSortedBySum(Bank bank) {
         Comparator<Account> comparator = (a, b) -> (int)(a.getBalance() - b.getBalance());
         SortedSet<Account> sortedAccounts = new TreeSet<>(comparator);
-        bank.getClients().forEach(client -> sortedAccounts.addAll(client.getAccounts()));
+        for (Client client : bank.getClients()) {
+            sortedAccounts.addAll(client.getAccounts());
+        }
         return sortedAccounts;
     }
 
@@ -55,7 +57,11 @@ public class BankReport {
     public static Map<Client, Collection<Account>> getCustomerAccounts(Bank bank) {
         Map<Client, Collection<Account>> customerAccounts = new HashMap<>();
         Set<Client> clients = bank.getClients();
-        bank.getClients().forEach(client -> customerAccounts.put(client, client.getAccounts()));
+
+        for (Client client : bank.getClients()) {
+            customerAccounts.put(client, client.getAccounts());
+        }
+
         return customerAccounts;
     }
 

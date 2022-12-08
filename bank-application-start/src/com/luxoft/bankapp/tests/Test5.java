@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Test5 {
-    // TODO: add test for BankReportStreams
     @Test
     public void testBankReportStreams() {
         Bank bank = new Bank();

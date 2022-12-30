@@ -15,7 +15,12 @@ public class SavingAccount extends AbstractAccount {
 		super(id, amount);
 		this.setType(AbstractAccount.SAVING_ACCOUNT_TYPE);
 	}
-	
+
+	@Override
+	public double maximumAmountToWithdraw() {
+		return this.balance;
+	}
+
 	public SavingAccount(int id, double amount, Currency currency) {
 		super(id, amount);
 		this.currency = currency;

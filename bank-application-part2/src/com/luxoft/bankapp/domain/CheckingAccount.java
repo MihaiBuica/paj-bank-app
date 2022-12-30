@@ -55,6 +55,11 @@ public class CheckingAccount extends AbstractAccount {
     }
 
 	@Override
+	public double maximumAmountToWithdraw() {
+		return this.balance + this.overdraft;
+	}
+
+	@Override
 	public String toString() {
 		Formatter fmt = new Formatter(Locale.US);
 		String stringAccount = fmt.format("Checking account %d, balance: %.2f, overdraft: %.2f", getId(), balance, overdraft).toString(); 

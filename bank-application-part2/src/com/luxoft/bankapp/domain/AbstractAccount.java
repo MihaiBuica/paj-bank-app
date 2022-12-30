@@ -51,17 +51,7 @@ public abstract class AbstractAccount implements Account, Serializable, Cloneabl
 		this.balance -= amount;
 	}
 	
-	public double maximumAmountToWithdraw(){
-		switch (type) {
-		   case SAVING_ACCOUNT_TYPE:
-			   return balance;
-		   case CHECKING_ACCOUNT_TYPE:
-			   CheckingAccount checkingAccount = (CheckingAccount)this;
-			  return checkingAccount.balance + checkingAccount.getOverdraft();
-		}
-		
-        return 0;
-    }
+	public abstract double maximumAmountToWithdraw();
 
 	@Override
 	public int getId() {

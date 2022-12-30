@@ -32,7 +32,7 @@ public class Test11_AccountCache {
         assertEquals("CheckingAccount", checkingAccount.getClass().getSimpleName());
         assertEquals(0, checkingAccount.getId());
         assertEquals(-50, checkingAccount.getBalance(), 0);
-        assertEquals(100, checkingAccount.overdraft, 0);
+        assertEquals(100, checkingAccount.getOverdraft(), 0);
         assertEquals(50, checkingAccount.maximumAmountToWithdraw(), 0);
     }
 

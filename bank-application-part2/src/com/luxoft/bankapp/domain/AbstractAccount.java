@@ -15,7 +15,7 @@ public abstract class AbstractAccount implements Account, Serializable, Cloneabl
 	private int id;
 	private int type;
 
-	public double balance;
+	protected double balance;
 	
 	public AbstractAccount(int id, double amount) {
 		this.id = id;
@@ -115,5 +115,8 @@ public abstract class AbstractAccount implements Account, Serializable, Cloneabl
 		return super.clone();
 	}
 
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
 
 }

@@ -31,7 +31,7 @@ public class Test11_AccountCache {
         checkingAccount.withdraw(1150.0);
         assertEquals("CheckingAccount", checkingAccount.getClass().getSimpleName());
         assertEquals(0, checkingAccount.getId());
-        assertEquals(-50, checkingAccount.balance, 0);
+        assertEquals(-50, checkingAccount.getBalance(), 0);
         assertEquals(100, checkingAccount.overdraft, 0);
         assertEquals(50, checkingAccount.maximumAmountToWithdraw(), 0);
     }
@@ -59,7 +59,7 @@ public class Test11_AccountCache {
         savingAccount2.deposit(200.0);
 
         // Same id
-        assertFalse(savingAccount1.equals(savingAccount2));
+        assertTrue(savingAccount1.equals(savingAccount2));
 
         assertEquals(50.0, savingAccount1.getBalance(), 0);
         assertEquals(200.0, savingAccount2.getBalance(), 0);
